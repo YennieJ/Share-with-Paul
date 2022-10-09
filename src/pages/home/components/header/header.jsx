@@ -4,12 +4,7 @@ import Button from "components/button";
 
 import * as S from "./header.styled";
 
-const Header = ({ today, date, setDate, prevMonth, nextMonth }) => {
-  // 오늘로
-  const goToday = () => {
-    setDate(today);
-  };
-
+const Header = ({ today, date, setDate }) => {
   return (
     <S.Container>
       <S.Month>
@@ -21,9 +16,15 @@ const Header = ({ today, date, setDate, prevMonth, nextMonth }) => {
       </S.Month>
 
       <S.ControlMonth>
-        <Button type="left" handleClick={prevMonth} />
-        <Button type="goToday" handleClick={goToday} />
-        <Button type="right" handleClick={nextMonth} />
+        <Button
+          type="left"
+          handleClick={() => setDate(date.subtract(1, "month"))}
+        />
+        <Button type="goToday" handleClick={() => setDate(today)} />
+        <Button
+          type="right"
+          handleClick={() => setDate(date.add(1, "month"))}
+        />
       </S.ControlMonth>
     </S.Container>
   );

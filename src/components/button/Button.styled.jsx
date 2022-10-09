@@ -60,6 +60,6 @@ export const Button = styled.button`
   }
 
   &.pencil {
-    margin-right: 6px;
+    margin-right: 4px;
   }
 `;

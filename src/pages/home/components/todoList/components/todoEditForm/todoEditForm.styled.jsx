@@ -30,6 +30,10 @@ export const TodoEditFormStyle = styled.section`
     margin-right: 20px;
   }
 
+  ul {
+    width: 100%;
+  }
+
   strong {
     display: block;
 

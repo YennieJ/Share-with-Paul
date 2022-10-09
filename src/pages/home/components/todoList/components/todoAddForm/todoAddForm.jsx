@@ -14,12 +14,14 @@ const TodoAddForm = ({ createTodo, todoDate }) => {
       window.alert("할 일을 입력하세요");
       return;
     }
+
     const todo = {
       id: Date.now(),
       text: todoRef.current.value,
       checked: false,
       date: todoDate,
     };
+
     formRef.current.reset();
     createTodo(todo);
   };
@@ -37,7 +39,7 @@ const TodoAddForm = ({ createTodo, todoDate }) => {
       {/* 아이템 입력 창 */}
       {/* <div>오늘의 할 일??개</div> */}
       <S.Container ref={formRef}>
-        <S.TodoInput ref={todoRef} onKeyPress={handleAddTodo} />
+        <S.TodoInput ref={todoRef} maxLength={40} onKeyPress={handleAddTodo} />
         <Button type="plus" handleClick={addTodoButton} />
       </S.Container>
     </>

@@ -16,11 +16,12 @@ export const Li = styled.li`
         `}
 
   .newText {
-    width: 100%;
-
+    width: 150px;
     margin-right: 10px;
 
     font-size: 14px;
+    text-align: start;
+    word-break: break-all;
   }
 
   .buttonBox {

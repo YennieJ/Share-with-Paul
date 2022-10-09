@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import * as S from "./week.styled";
 
-function Day({ date, setDate, startDay, todos, prevMonth, nextMonth }) {
+function Day({ today, date, setDate, startDay, todos }) {
   const [week, setWeek] = useState([]);
 
   useEffect(() => {
@@ -18,22 +18,26 @@ function Day({ date, setDate, startDay, todos, prevMonth, nextMonth }) {
       //할일이 있나요?
       let checkTodoThings = selectedDateData.length > 0;
 
+      //이전달, 다음달 날짜
+      let isGrayed = current.format("MM") !== date.format("MM");
+
       //오늘 표시하기
       let isToday = date.format("YYYYMMDD") === current.format("YYYYMMDD");
 
-      //이번 달이 아닌 다른 달의 날짜
-      let isGrayed = current.format("MM") !== date.format("MM");
-
       //선택 된 날짜
-      let selectDate = current.format("YYYYMMDD") === date.format("YYYYMMDD");
+      let selectDate = today.format("YYYYMMDD") === current.format("YYYYMMDD");
 
       //투두리스트랑 화면 컨트롤
       const selectedDate = () => {
-        if (current.format("MM") === date.subtract(1, "month").format("MM")) {
-          prevMonth();
-        } else if (current.format("MM") === date.add(1, "month").format("MM")) {
-          nextMonth();
+        let prevMonth = date.subtract(1, "month");
+        let nextMonth = date.add(1, "month");
+
+        if (current.format("MM") === prevMonth.format("MM")) {
+          setDate(prevMonth);
+        } else if (current.format("MM") === nextMonth.format("MM")) {
+          setDate(nextMonth);
         }
+
         setDate(current);
       };
 
@@ -57,7 +61,7 @@ function Day({ date, setDate, startDay, todos, prevMonth, nextMonth }) {
     }
 
     setWeek(itemList);
-  }, [date, nextMonth, prevMonth, setDate, startDay, todos]);
+  }, [date, setDate, startDay, today, todos]);
 
   return (
     <>

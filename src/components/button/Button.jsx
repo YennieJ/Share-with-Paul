@@ -3,7 +3,6 @@ import React from "react";
 import * as S from "./Button.styled";
 
 function Button(props) {
-  // console.log(props);
   return (
     <>
       {props.type === "trashbin" && (
